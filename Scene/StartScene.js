@@ -4,13 +4,20 @@ class StartScene extends Phaser.Scene{
     }
 
     preload() {
-        
+        this.load.image('button', './assets/button_start.png')
     }
 
     create() {
-        this.text = this.add.text(0,0,"Press Enter to Start", {font:"40px Impact"});
+        this.image = this.add.image(300, 600, 'button')
+        this.image.setScale(0.5);
+        this.image.setInteractive();
+        this.image.on('pointerdown', function() {
+            this.scene.start("GameScene")
+        }, this)
 
-        this.text.setColor("#ff00e6")
+        this.text = this.add.text(120,100,"Press Enter to Start", {font:"40px Sans-serif"});
+
+        this.text.setColor("#16bbf2")
 
         this.input.keyboard.on('keyup', function(e) {
             if (e.key == "Enter") {

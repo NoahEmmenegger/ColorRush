@@ -16,3 +16,5 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
+
+var green = "#79e364";
