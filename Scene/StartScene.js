@@ -9,7 +9,7 @@ class StartScene extends Phaser.Scene {
     }
 
     create() {
-        this.image = this.add.image(300, 600, 'button')
+        this.image = this.add.image(300, 350, 'button')
         this.image.setScale(0.5)
         this.image.setInteractive()
         this.image.on(
@@ -30,12 +30,6 @@ class StartScene extends Phaser.Scene {
             },
             this
         )
-
-        this.text = this.add.text(120, 100, 'Press Enter to Start', {
-            font: '40px Sans-serif'
-        })
-
-        this.text.setColor('#16bbf2')
 
         this.input.keyboard.on(
             'keyup',
