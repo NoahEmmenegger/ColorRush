@@ -111,7 +111,7 @@ class GameScene extends Phaser.Scene {
     }
 
     changeColor(bar, ball, container) {
-        if(container.y == 600) {
+        if(container.y >= 590 && container.y <= 610) {
             this.activeBall = this.getRandomBallColor();
             this.player.setTexture(this.activeBall);
         }
