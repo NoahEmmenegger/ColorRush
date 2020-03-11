@@ -1,7 +1,6 @@
-class GameScene extends Phaser.Scene{
-    
+class GameScene extends Phaser.Scene {
     constructor() {
-        super({key:"GameScene"});
+        super({ key: 'GameScene' })
     }
 
     preload() {
@@ -19,7 +18,6 @@ class GameScene extends Phaser.Scene{
     }
 
     create() {
-
         //this.soundFx = this.sound.add("music", {loop: "true"});
         //this.soundFx.play();
         this.leftkeyDown = false;
@@ -35,7 +33,11 @@ class GameScene extends Phaser.Scene{
         this.time.addEvent({ delay: 50, callback: this.updateScore, callbackScope: this, loop: true });
 
         this.containers = []
-        this.timedEvent = this.time.addEvent({ delay: this.distance, callback: this.onEvent, callbackScope: this});
+        this.timedEvent = this.time.addEvent({
+            delay: this.distance,
+            callback: this.onEvent,
+            callbackScope: this
+        })
     }
 
     updateScore() {
@@ -46,40 +48,37 @@ class GameScene extends Phaser.Scene{
     {
         this.createBar();
         //Phaser.Math.Between(1000, 3000)
-        this.timedEvent.reset({ delay: this.distance, callback: this.onEvent, callbackScope: this, repeat: 1});
+        this.timedEvent.reset({
+            delay: this.distance,
+            callback: this.onEvent,
+            callbackScope: this,
+            repeat: 1
+        })
     }
 
-    update(){
-        this.containers.map((container) => {
-            container.y += this.speed;
+    update() {
+        this.containers.map(container => {
+            container.y += this.speed
             if (container.y > 800) {
-                container.destroy();
+                container.destroy()
                 this.containers.splice(this.containers.indexOf(container), 1)
             }
         })
 
-
-        if (this.cursors.left.isDown)
-        {        
-            this.leftkeyDown = true;
-        }
-        else if(this.leftkeyDown)
-        {
-            this.leftkeyDown = false;
-            if(this.player.x > 200){
-                this.player.x = this.player.x -200  
-            }      
-        }
-        else if (this.cursors.right.isDown)
-        {
-            this.rightKeyDown = true;
-        }
-        else if(this.rightKeyDown)
-        {
-            this.rightKeyDown = false;
-            if(this.player.x < 500){
-                this.player.x = this.player.x + 200     
-            }   
+        if (this.cursors.left.isDown) {
+            this.leftkeyDown = true
+        } else if (this.leftkeyDown) {
+            this.leftkeyDown = false
+            if (this.player.x > 200) {
+                this.player.x = this.player.x - 200
+            }
+        } else if (this.cursors.right.isDown) {
+            this.rightKeyDown = true
+        } else if (this.rightKeyDown) {
+            this.rightKeyDown = false
+            if (this.player.x < 500) {
+                this.player.x = this.player.x + 200
+            }
         }
 
         this.text.setText(this.score);
@@ -117,21 +116,21 @@ class GameScene extends Phaser.Scene{
         var colors = ['ball_red', 'ball_green', 'ball_blue']
         return colors[Phaser.Math.Between(0,2)]
     }
-    
+
     checkCollisionColor(bar, ball, physic) {
         if (bar.texture.key.split('_')[1] !== this.activeBall.split('_')[1]) {
-            this.scene.start("StartScene")
+            this.scene.start('GameOverScene')
         }
-        physic.destroy();
+        physic.destroy()
     }
 
     getRandomPosition() {
         var positions = [100, 300, 500]
-        var arr = [];
-        while(arr.length < 3){
-            var r = Phaser.Math.Between(0, 2);
-            if(arr.indexOf(positions[r]) === -1) arr.push(positions[r]);
+        var arr = []
+        while (arr.length < 3) {
+            var r = Phaser.Math.Between(0, 2)
+            if (arr.indexOf(positions[r]) === -1) arr.push(positions[r])
         }
-        return arr;
+        return arr
     }
 }

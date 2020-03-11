@@ -7,9 +7,9 @@ var config = {
         autoCenter: true
     },
     physics: {
-        default:'arcade'
+        default: 'arcade'
     },
-    scene: [StartScene, GameScene, SettingsScene]
+    scene: [StartScene, GameScene, SettingsScene, GameOverScene]
 }
 
 var game = new Phaser.Game(config)

@@ -1,15 +1,15 @@
-class StartScene extends Phaser.Scene {
+class GameOverScene extends Phaser.Scene {
     constructor() {
-        super({ key: 'StartScene' })
+        super({ key: 'GameOverScene' })
     }
 
     preload() {
-        this.load.image('button', './assets/button_start.png')
-        this.load.image('settings', './assets/settings.png')
+        this.load.image('home', './assets/homeIcon.png')
+        this.load.image('buttonReplay', './assets/button_replay.png')
     }
 
     create() {
-        this.image = this.add.image(300, 350, 'button')
+        this.image = this.add.image(300, 350, 'buttonReplay')
         this.image.setScale(0.5)
         this.image.setInteractive()
         this.image.on(
@@ -19,23 +19,28 @@ class StartScene extends Phaser.Scene {
             },
             this
         )
-
-        this.image = this.add.image(540, 115, 'settings')
-        this.image.setScale(0.05)
+        this.image = this.add.image(540, 115, 'home')
+        this.image.setScale(0.12)
         this.image.setInteractive()
         this.image.on(
             'pointerdown',
             function() {
-                this.scene.start('SettingsScene')
+                this.scene.start('StartScene')
             },
             this
         )
+
+        this.text = this.add.text(120, 100, 'Game Over \n\n Your Score: ', {
+            font: '40px Sans-serif'
+        })
+
+        this.text.setColor('#16bbf2')
 
         this.input.keyboard.on(
             'keyup',
             function(e) {
                 if (e.key == 'Enter') {
-                    this.scene.start('GameScene')
+                    this.scene.start('StartScene')
                 }
             },
             this
