@@ -69,6 +69,16 @@ class GameScene extends Phaser.Scene{
                 this.player.x = this.player.x + 200     
             }   
         }
+
+        this.input.keyboard.on(
+            'keyup',
+            function(e) {
+                if (e.key == 'Escape') {
+                    this.scene.start('StartScene')
+                }
+            },
+            this
+        )
     }
 
     createBar() {
