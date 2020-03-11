@@ -1,7 +1,11 @@
 class GameOverScene extends Phaser.Scene {
-    constructor() {
+    constructor(data) {
         super({ key: 'GameOverScene' })
     }
+
+    init(data){
+        this.score = data.score;
+      }
 
     preload() {
         this.load.image('home', './assets/homeIcon.png')
@@ -30,7 +34,7 @@ class GameOverScene extends Phaser.Scene {
             this
         )
 
-        this.text = this.add.text(120, 100, 'Game Over \n\n Your Score: ', {
+        this.text = this.add.text(120, 100, 'Game Over \n\n Your Score: ' + this.score, {
             font: '40px Sans-serif'
         })
 
@@ -40,7 +44,7 @@ class GameOverScene extends Phaser.Scene {
             'keyup',
             function(e) {
                 if (e.key == 'Enter') {
-                    this.scene.start('StartScene')
+                    this.scene.start('GameScene')
                 }
             },
             this

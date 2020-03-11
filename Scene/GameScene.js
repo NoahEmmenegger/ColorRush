@@ -87,7 +87,7 @@ class GameScene extends Phaser.Scene {
             'keyup',
             function(e) {
                 if (e.key == 'Escape') {
-                    this.scene.start('StartScene')
+                    this.scene.start('GameOverScene', { score: this.score })
                 }
             },
             this
@@ -119,7 +119,7 @@ class GameScene extends Phaser.Scene {
 
     checkCollisionColor(bar, ball, physic) {
         if (bar.texture.key.split('_')[1] !== this.activeBall.split('_')[1]) {
-            this.scene.start('GameOverScene')
+            this.scene.start('GameOverScene', { score: this.score })
         }
         physic.destroy()
     }
