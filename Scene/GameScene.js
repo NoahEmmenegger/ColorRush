@@ -26,8 +26,18 @@ class GameScene extends Phaser.Scene{
         this.player.setScale(0.1);
         this.cursors = this.input.keyboard.createCursorKeys();
 
+        this.score = 0;
+        this.text = this.add.text(590, 40, 'score', { font: '32px Courier', fill: '#000000', align: 'right', boundsAlignH: 'right' });
+        this.text.setDepth(1)
+        this.text.setOrigin(1);
+        this.time.addEvent({ delay: 50, callback: this.updateScore, callbackScope: this, loop: true });
+
         this.containers = []
         this.timedEvent = this.time.addEvent({ delay: this.distance, callback: this.onEvent, callbackScope: this});
+    }
+
+    updateScore() {
+        this.score += 1;
     }
 
     onEvent ()
@@ -69,6 +79,8 @@ class GameScene extends Phaser.Scene{
                 this.player.x = this.player.x + 200     
             }   
         }
+
+        this.text.setText(this.score);
 
         this.input.keyboard.on(
             'keyup',
