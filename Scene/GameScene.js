@@ -12,7 +12,7 @@ class GameScene extends Phaser.Scene {
         this.load.image('bar_green', './assets/bar_green.png');
         this.load.image('bar_red', './assets/bar_red.png');
 
-        this.distance = 1000; //in ms
+        this.distance = 1250; //in ms
         this.speed = 5;
         this.activeBall = this.getRandomBallColor();
     }
@@ -31,6 +31,7 @@ class GameScene extends Phaser.Scene {
         this.text.setDepth(1)
         this.text.setOrigin(1);
         this.time.addEvent({ delay: 50, callback: this.updateScore, callbackScope: this, loop: true });
+        this.time.addEvent({ delay: 5000, callback: this.updateSpeed, callbackScope: this, loop: true });
 
         this.containers = []
         this.timedEvent = this.time.addEvent({
@@ -42,6 +43,10 @@ class GameScene extends Phaser.Scene {
 
     updateScore() {
         this.score += 1;
+    }
+
+    updateSpeed() {
+        this.speed += 1;
     }
 
     onEvent ()
