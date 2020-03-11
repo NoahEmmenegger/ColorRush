@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <html>
   <?
-    include '.\Scene\LoginScene.html';
+  session_start();
+  header('Location: http://localhost/ColorRush/Scene/LoginScene.php');
   ?>
     <body>
         

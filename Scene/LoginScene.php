@@ -5,7 +5,7 @@
     </head>
     <body>
         <div class="loginForm">
-            <form action="\ColorRush\Game.html" method="POST">
+            <form action="\ColorRush\LoginRegister\LoginController.php" method="POST">
                 Benutzername:
                 <br>
                 <input type="text" name="username">
@@ -19,8 +19,18 @@
         </form>
         </div>
         <br>
+        <?
+            $problems = $_GET['Probleme'] ?? "";
+            if($problems != "")
+            {
+                foreach(explode('||', $problems) as $oneProblem)
+                {
+                    echo "<p>" . $oneProblem . "<p>";
+                }
+            }
+        ?>
         <br>
         <br>
-        <a href="/ColorRush/Scene/RegisterScene.html">Noch kein Account? Jetzt Registrieren</a>
+        <a href="/ColorRush/Scene/RegisterScene.php">Noch kein Account? Jetzt Registrieren</a>
     </body>
 </html>
