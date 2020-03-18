@@ -32,7 +32,6 @@ class StartScene extends Phaser.Scene {
     }
 
     create() {
-        console.log(this.sys.game)
         this.image = this.add.image(300, 350, 'button')
         this.image.setScale(0.5)
         this.image.setInteractive()
@@ -64,10 +63,5 @@ class StartScene extends Phaser.Scene {
             },
             this
         )
-
-        this.highscoreText = this.add.text(120, 500, 'Highscore: ' + this.sys.game.user['_highscore'], {
-            font: '20px Sans-serif',
-            color: '#000000'
-        })
     }
 }
