@@ -5,6 +5,7 @@ class GameOverScene extends Phaser.Scene {
 
     init(data){
         this.score = data.score;
+        this.isMute = data.isMute;
       }
 
     preload() {
@@ -19,7 +20,7 @@ class GameOverScene extends Phaser.Scene {
         this.image.on(
             'pointerdown',
             function() {
-                this.scene.start('GameScene')
+                this.scene.start('GameScene', { isMute: this.isMute })
             },
             this
         )
@@ -29,7 +30,7 @@ class GameOverScene extends Phaser.Scene {
         this.image.on(
             'pointerdown',
             function() {
-                this.scene.start('StartScene')
+                this.scene.start('StartScene', { isMute: this.isMute })
             },
             this
         )
@@ -44,7 +45,7 @@ class GameOverScene extends Phaser.Scene {
             'keyup',
             function(e) {
                 if (e.key == 'Enter') {
-                    this.scene.start('GameScene')
+                    this.scene.start('GameScene', { isMute: this.isMute })
                 }
             },
             this

@@ -3,6 +3,13 @@ class StartScene extends Phaser.Scene {
         super({ key: 'StartScene' })
     }
 
+    init(data){
+        this.isMute = data.isMute;
+        if (typeof(this.isMute) === "undefined"){
+            this.isMute = true;
+        }
+      }
+
     preload() {
         this.load.image('button', './assets/button_start.png')
         this.load.image('settings', './assets/settings.png')
@@ -15,7 +22,7 @@ class StartScene extends Phaser.Scene {
         this.image.on(
             'pointerdown',
             function() {
-                this.scene.start('GameScene')
+                this.scene.start('GameScene', { isMute: this.isMute })
             },
             this
         )
@@ -26,7 +33,7 @@ class StartScene extends Phaser.Scene {
         this.image.on(
             'pointerdown',
             function() {
-                this.scene.start('SettingsScene')
+                this.scene.start('SettingsScene', {isMute: this.isMute})
             },
             this
         )
@@ -35,7 +42,7 @@ class StartScene extends Phaser.Scene {
             'keyup',
             function(e) {
                 if (e.key == 'Enter') {
-                    this.scene.start('GameScene')
+                    this.scene.start('GameScene', { isMute: this.isMute })
                 }
             },
             this
