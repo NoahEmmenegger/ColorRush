@@ -11,7 +11,7 @@
                 <br>
                 Passwort:
                 <br>
-                <input type="text" name="password">
+                <input type="password" name="password">
                 <br>
                 <br>
                 <input type="image" width="60px" src="/ColorRush/assets/LoginButton.png">
