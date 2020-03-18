@@ -1,7 +1,7 @@
 <?
     $problems = "";
-    $username = $_POST["username"] ?? "";;
-    $password = $_POST["password"] ?? "";;
+    $username = $_POST["username"] ?? "";
+    $password = $_POST["password"] ?? "";
     if($password == "" && $username == "")
     {
         include 'View\LoginView.php';

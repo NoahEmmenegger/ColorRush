@@ -42,10 +42,16 @@ class GameOverScene extends Phaser.Scene {
 
         this.text.setColor('#16bbf2')
 
+        if(this.sys.game.user['_highscore'] < this.score)
+        {
+            this.updateHighscore();
+        }
+
         this.highscoreText = this.add.text(120, 250, 'Your Highscore: ' + this.sys.game.user['_highscore'], {
             font: '40px Sans-serif',
             color: '#16bbf2'
         })
+       
 
         this.input.keyboard.on(
             'keyup',
@@ -57,4 +63,12 @@ class GameOverScene extends Phaser.Scene {
             this
         )
     }
+
+    updateHighscore()
+    {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'Controller/ChangeHighscore.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("highscore="+this.score);
+    }""
 }

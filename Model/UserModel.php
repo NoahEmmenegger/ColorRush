@@ -44,6 +44,14 @@
              WHERE id=$this->_id LIMIT 1");
         }
 
+        public function updateHighscore($newHighscore)
+        {
+            $db = self::connectToDataBase();
+            $this->_password = $newHighscore;
+            $db->query("UPDATE user SET highscore=$newHighscore 
+             WHERE id=$this->_id LIMIT 1");
+        }
+
         public static function create($username, $password)
         {
             $db = self::connectToDataBase();
