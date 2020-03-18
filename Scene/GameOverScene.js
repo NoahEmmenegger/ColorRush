@@ -6,6 +6,7 @@ class GameOverScene extends Phaser.Scene {
     init(data){
         this.score = data.score;
         this.isMute = data.isMute;
+        this.user = data.user;
       }
 
     preload() {
@@ -14,7 +15,7 @@ class GameOverScene extends Phaser.Scene {
     }
 
     create() {
-        this.image = this.add.image(300, 350, 'buttonReplay')
+        this.image = this.add.image(300, 500, 'buttonReplay')
         this.image.setScale(0.5)
         this.image.setInteractive()
         this.image.on(
@@ -40,6 +41,11 @@ class GameOverScene extends Phaser.Scene {
         })
 
         this.text.setColor('#16bbf2')
+
+        this.highscoreText = this.add.text(120, 250, 'Your Highscore: ' + this.sys.game.user['_highscore'], {
+            font: '40px Sans-serif',
+            color: '#16bbf2'
+        })
 
         this.input.keyboard.on(
             'keyup',

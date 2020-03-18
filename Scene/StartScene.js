@@ -8,7 +8,23 @@ class StartScene extends Phaser.Scene {
         if (typeof(this.isMute) === "undefined"){
             this.isMute = true;
         }
-      }
+    }
+
+    getData() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) return;
+        
+            if (this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                this.user = data
+            }
+            this.scene.start('GameScene')
+        };
+        xhr.open("POST", 'Controller/User.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send();
+    }
 
     preload() {
         this.load.image('button', './assets/button_start.png')
@@ -22,7 +38,7 @@ class StartScene extends Phaser.Scene {
         this.image.on(
             'pointerdown',
             function() {
-                this.scene.start('GameScene', { isMute: this.isMute })
+                this.scene.start('GameScene', { isMute: this.isMute, user: this.user })
             },
             this
         )
