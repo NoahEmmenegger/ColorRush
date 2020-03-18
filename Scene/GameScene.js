@@ -3,6 +3,10 @@ class GameScene extends Phaser.Scene {
         super({ key: 'GameScene' })
     }
 
+    init(data){
+        this.isMute = data.isMute;
+      }
+
     preload() {
         this.load.audio('music', ['assets/Music.mp3']);
         this.load.image('ball_blue', './assets/ball_blue.png');
@@ -18,8 +22,9 @@ class GameScene extends Phaser.Scene {
     }
 
     create() {
-        //this.soundFx = this.sound.add("music", {loop: "true"});
-        //this.soundFx.play();
+        this.soundFx = this.sound.add("music", {loop: "true"});
+        this.soundFx.play();
+        this.soundFx.setMute(this.isMute);
         this.leftkeyDown = false;
         this.rightKeyDown = false;
         this.player = this.physics.add.sprite(300, 600, this.activeBall);
@@ -92,7 +97,8 @@ class GameScene extends Phaser.Scene {
             'keyup',
             function(e) {
                 if (e.key == 'Escape') {
-                    this.scene.start('GameOverScene', { score: this.score })
+                    this.soundFx.destroy();
+                    this.scene.start('GameOverScene', { score: this.score, isMute: this.isMute })
                 }
             },
             this
@@ -124,7 +130,8 @@ class GameScene extends Phaser.Scene {
 
     checkCollisionColor(bar, ball, physic) {
         if (bar.texture.key.split('_')[1] !== this.activeBall.split('_')[1]) {
-            this.scene.start('GameOverScene', { score: this.score })
+            this.soundFx.destroy();
+            this.scene.start('GameOverScene', { score: this.score, isMute: this.isMute })
         }
         physic.destroy()
     }
