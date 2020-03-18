@@ -3,7 +3,6 @@
         <link rel="stylesheet" type="text/css" href="./css/LoginRegister.css">
     </head>
     <body>
-        <div class="loginForm">
             <form method="POST">
                 Benutzername:
                 <br>
@@ -20,7 +19,6 @@
                 <br>
                 <input type="image" width="60px" src="/ColorRush/assets/RegisterButton.png">
         </form>
-        </div>
         <br>
         <?
             if($problems != "")

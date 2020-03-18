@@ -4,7 +4,6 @@
         <script src="./JavaScripts/Login.js"></script>
     </head>
     <body>
-        <div class="loginForm">
             <form method="POST">
                 Benutzername:
                 <br>
@@ -17,7 +16,6 @@
                 <br>
                 <input type="image" width="60px" src="/ColorRush/assets/LoginButton.png">
         </form>
-        </div>
         <br>
         <?
             if($problems != "")
