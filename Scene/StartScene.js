@@ -8,7 +8,23 @@ class StartScene extends Phaser.Scene {
         if (typeof(this.isMute) === "undefined"){
             this.isMute = true;
         }
-      }
+    }
+
+    getData() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState != 4) return;
+        
+            if (this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                this.user = data
+            }
+            this.scene.start('GameScene')
+        };
+        xhr.open("POST", 'Controller/User.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send();
+    }
 
     preload() {
         this.load.image('button', './assets/button_start.png')
@@ -16,13 +32,14 @@ class StartScene extends Phaser.Scene {
     }
 
     create() {
+        console.log(this.sys.game)
         this.image = this.add.image(300, 350, 'button')
         this.image.setScale(0.5)
         this.image.setInteractive()
         this.image.on(
             'pointerdown',
             function() {
-                this.scene.start('GameScene', { isMute: this.isMute })
+                this.scene.start('GameScene', { isMute: this.isMute, user: this.user })
             },
             this
         )
@@ -47,5 +64,10 @@ class StartScene extends Phaser.Scene {
             },
             this
         )
+
+        this.highscoreText = this.add.text(120, 500, 'Highscore: ' + this.sys.game.user['_highscore'], {
+            font: '20px Sans-serif',
+            color: '#000000'
+        })
     }
 }

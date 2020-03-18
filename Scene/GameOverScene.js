@@ -6,6 +6,7 @@ class GameOverScene extends Phaser.Scene {
     init(data){
         this.score = data.score;
         this.isMute = data.isMute;
+        this.user = data.user;
       }
 
     preload() {
