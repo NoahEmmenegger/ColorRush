@@ -32,6 +32,7 @@ class StartScene extends Phaser.Scene {
     }
 
     create() {
+        console.log(this.sys.game.user)
         this.image = this.add.image(300, 350, 'button')
         this.image.setScale(0.5)
         this.image.setInteractive()
@@ -53,6 +54,11 @@ class StartScene extends Phaser.Scene {
             },
             this
         )
+
+        this.userNameText = this.add.text(120, 250, this.sys.game.user['_username'], {
+            font: '40px Sans-serif',
+            color: '#16bbf2'
+        })
 
         this.input.keyboard.on(
             'keyup',
