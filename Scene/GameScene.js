@@ -8,7 +8,7 @@ class GameScene extends Phaser.Scene {
         this.load.image('ball_blue', './assets/ball_blue.png');
         this.load.image('ball_green', './assets/ball_green.png');
         this.load.image('ball_red', './assets/ball_red.png');
-        this.load.image('bar_blue', './assets/bar_blue.png');
+        this.load.image('bar_blue', 'assets\\bar_blue.png');
         this.load.image('bar_green', './assets/bar_green.png');
         this.load.image('bar_red', './assets/bar_red.png');
 

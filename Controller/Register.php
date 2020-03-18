@@ -4,7 +4,12 @@
     $password = $_POST["password"] ?? "";;
     $confirm_password = $_POST["confirm_password"] ?? "";
 
-    if(strlen($username) < 2)
+    if($username == "" && $password == "")
+    {
+        include 'View\RegisterView.php';
+    }
+    else{
+        if(strlen($username) < 2)
     {
         $problems = $problems . "||Der Benutzername ist zu kurz, er muss mindestens zwei Zeichen haben.";
     }
@@ -20,13 +25,13 @@
 
     if($problems == "")
     {
-        include ('UserModel.php');
+        include 'Model\UserModel.php';
         $user = UserModel::findUserWithName($username);
         if($user == null)
         {           
             $user = UserModel::create($username, $password);
             $_SESSION['username'] = $user->_username;
-            header('Location: http://localhost/ColorRush/Game.html');
+            header('Location: http://localhost/ColorRush/Game');
         }
         else
         {
@@ -36,7 +41,10 @@
     
     if($problems != "")
     {
-        header('Location: http://localhost/ColorRush/Scene/RegisterScene.php?Probleme='. $problems);
+        include 'View\RegisterView.php'; 
     }
+    }
+
+    
     
 ?>

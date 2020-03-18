@@ -1,4 +1,10 @@
 <html>
+    <?
+        if(!isSet($_SESSION['username']))
+        {
+            header('Location: http://localhost/ColorRush/Login');
+        }
+    ?>
     <script src="phaser.js"></script>
     <script src="Scene/StartScene.js"></script>
     <script src="Scene/GameScene.js"></script>

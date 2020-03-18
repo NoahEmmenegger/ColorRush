@@ -1,10 +1,11 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/LoginRegister.css">
+        <link rel="stylesheet" href="./css/LoginRegister.css">
+        <script src="./JavaScripts/Login.js"></script>
     </head>
     <body>
         <div class="loginForm">
-            <form action="\ColorRush\LoginRegister\RegisterController.php" method="POST">
+            <form method="POST">
                 Benutzername:
                 <br>
                 <input type="text" name="username">
@@ -13,17 +14,12 @@
                 <br>
                 <input type="text" name="password">
                 <br>
-                Passwort Wiederholen:
                 <br>
-                <input type="text" name="confirm_password">
-                <br>
-                <br>
-                <input type="image" width="60px" src="/ColorRush/assets/RegisterButton.png">
+                <input type="image" width="60px" src="/ColorRush/assets/LoginButton.png">
         </form>
         </div>
         <br>
         <?
-            $problems = $_GET['Probleme'] ?? "";
             if($problems != "")
             {
                 foreach(explode('||', $problems) as $oneProblem)
@@ -34,6 +30,6 @@
         ?>
         <br>
         <br>
-        <a href="/ColorRush/Scene/LoginScene.php">Bereits ein Account? Jetzt einloggen</a>
+        <a href="/ColorRush/Register">Noch kein Account? Jetzt Registrieren</a>
     </body>
 </html>
