@@ -23,6 +23,10 @@ class SettingsScene extends Phaser.Scene {
             this
         )
 
+        this.changePasswordButton = this.add.text(120, 350, 'Passwort ändern', { fill: '#000000' });
+        this.changePasswordButton.setInteractive();
+        this.changePasswordButton.on('pointerdown', () => { this.changePassword() });
+
         this.musicText = this.add.text(120, 300, 'Music: ' + !this.isMute, {
             font: '20px Sans-serif',
             color: '#000000'
@@ -56,7 +60,6 @@ class SettingsScene extends Phaser.Scene {
     }
 
     changePassword() {
-        console.log('pointerdown');
-        $.ajax({url: "localhost/ColorRush/ChangePassword", async: false})
+        window.location = "Controller/ChangePassword.php";
     }
 }
