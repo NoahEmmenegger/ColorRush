@@ -36,10 +36,16 @@
             return null;
         }
 
+        public function updatePassword($newPassword)
+        {
+            $db = self::connectToDataBase();
+            $this->_password = $newPassword;
+            $db->query("UPDATE user SET password=$newPassword 
+             WHERE id=$this->_id LIMIT 1");
+        }
+
         public static function create($username, $password)
         {
-            var_dump($username);
-            var_dump($password);
             $db = self::connectToDataBase();
             $statement = $db->prepare("INSERT INTO user (username, password, highscore, audio) VALUES (?, ?, ?, ?)");
             $statement->execute(array($username, $password, 0, true));

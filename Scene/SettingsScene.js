@@ -54,4 +54,9 @@ class SettingsScene extends Phaser.Scene {
             this
         )
     }
+
+    changePassword() {
+        console.log('pointerdown');
+        $.ajax({url: "localhost/ColorRush/ChangePassword", async: false})
+    }
 }
