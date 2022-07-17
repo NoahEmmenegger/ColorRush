@@ -10,11 +10,11 @@
                 <br>
                 Passwort:
                 <br>
-                <input type="text" name="password">
+                <input type="password" name="password">
                 <br>
                 Passwort Wiederholen:
                 <br>
-                <input type="text" name="confirm_password">
+                <input type="password" name="confirm_password">
                 <br>
                 <br>
                 <input type="image" width="60px" src="/ColorRush/assets/RegisterButton.png">
